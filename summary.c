@@ -527,6 +527,11 @@ insert_remote_summary(struct archive *a, char *cur_repo)
 
 	pkgindb_doquery("COMMIT;", NULL, NULL);
 
+	if (!parsable) {
+		printf("\n");
+		fflush(stdout);
+	}
+
 	if (r != ARCHIVE_OK)
 		errx(EXIT_FAILURE, "Short read of pkg_summary: %s",
 		    archive_error_string(a));
