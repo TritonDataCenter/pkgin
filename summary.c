@@ -414,7 +414,7 @@ insert_remote_summary(struct archive *a, char *cur_repo)
 	 * the buffer back to the beginning each time.
 	 */
 	buflen = 32768;
-	XMALLOC(buf, buflen);
+	XMALLOC(buf, buflen + 1);
 
 	/* record columns names to cols */
 	snprintf(buf, buflen, "PRAGMA table_info(%s);",
@@ -449,7 +449,7 @@ insert_remote_summary(struct archive *a, char *cur_repo)
 		if (strstr(pi, "\n\n") == NULL) {
 			offset = buflen;
 			buflen *= 2;
-			XREALLOC(buf, buflen);
+			XREALLOC(buf, buflen + 1);
 			continue;
 		}
 
